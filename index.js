@@ -5,6 +5,7 @@ var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('./config/passport');
+var util = require('./util');
 var app = express();
 
 // DB setting
@@ -39,11 +40,11 @@ app.use(function(req,res,next){
 
 // Routes
 app.use('/', require('./routes/home'));
-app.use('/posts', require('./routes/posts'));
+app.use('/posts', util.getPostQueryString, require('./routes/posts'));
 app.use('/users', require('./routes/users'));
 
 // Port setting
-var port = 3000;
+var port = process.env.PORT || 3000; // 1
 app.listen(port, function(){
   console.log('server on! http://localhost:'+port);
 });
