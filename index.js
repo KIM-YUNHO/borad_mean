@@ -43,6 +43,7 @@ app.use('/', require('./routes/home'));
 app.use('/posts', util.getPostQueryString, require('./routes/posts'));
 app.use('/users', require('./routes/users'));
 
+
 // Port setting
 var port = process.env.PORT || 3000; // 1
 app.listen(port, function(){
